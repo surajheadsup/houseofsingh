@@ -1,27 +1,37 @@
-body,
-body[data-theme="light"] {
-  --color-text-primary: #27201a;
-  --color-text-secondary: #076963;
-  --color-bg-primary: #fff;
-  --color-bg-toggle: #1e90ff;
-}
-
-body[data-theme="dark"] {
-  --color-text-primary: #e3e3e3;
-  --color-text-secondary: #ff6b00;
-  --color-bg-primary: #15232d;
-  --color-bg-toggle: #a9a9a9;
-}
-
 /* Default */
 
 body {
   background: var(--color-bg-primary);
   color: var(--color-text-primary);
-  font-family: sans-serif;
+  font-family: 'Avenir_Book';
   transition: background 0.25s ease-in-out;
+}
+.active{
+  font-weight: 600;
+  border-bottom: 2px var(--color-text-primary) solid;
 }
 
 /* h1 {
   color: var(--color-text-secondary);
 } */
+/* Font Faces */
+@font-face {
+  font-family: 'Avenir_0';
+  src: url('../public/fonts/Avenir_0.ttc');
+}
+@font-face {
+  font-family: 'Avenir_Custom_Outline';
+  src: url('../public/fonts/Avenir-95-Custom.Outerline-Normal.ttf');
+}
+@font-face {
+  font-family: 'Avenir_Book';
+  src: url('../public/fonts/AvenirLTStd-Book.otf');
+}
+@font-face {
+  font-family: 'Avenir_Light' ;
+  src: url('../public/fonts/AvenirLTStd-Light.otf');
+}
+@font-face {
+  font-family: 'Avenir_Roman';
+  src: url('../public/fonts/AvenirLTStd-Roman.otf');
+}

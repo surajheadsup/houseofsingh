@@ -4,8 +4,8 @@ import * as Session from '../storage/storage'
 
 
 const ToggleButton = styled.button`
-  --toggle-width: 80px;
-  --toggle-height: 38px;
+  --toggle-width: 45px;
+  --toggle-height: 25px;
   --toggle-padding: 4px;
   position: relative;
   display: flex;
@@ -72,8 +72,8 @@ const ThemeToggle = () => {
         onClick={() =>setTheme()}
         >
         <ToggleThumb activeTheme={activeTheme} />
-        <span aria-hidden={true}>☀️</span>
-        <span aria-hidden={true}>🌙</span>
+        {/* <span aria-hidden={true}>☀️</span>
+        <span aria-hidden={true}>🌙</span> */}
     </ToggleButton>
   );
 };

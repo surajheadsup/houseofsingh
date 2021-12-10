@@ -1,0 +1,25 @@
+.topnav{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding : 0 50px;
+}
+.inline{
+    display: flex;
+}
+.switch{
+    display: flex;
+    justify-content: space-between;
+}
+.navigation{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 40px;
+    padding-bottom: 10px;
+    border-bottom: 2px var(--color-text-primary) solid;
+}
+.navigation a{
+    color : var(--color-text-primary);
+    text-decoration: none;
+    font-size: var(--font);
+}

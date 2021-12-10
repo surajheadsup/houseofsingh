@@ -1,0 +1,25 @@
+.about{
+    padding : 0 50px;
+}
+.label{
+    margin-top: 10px;;
+}
+.active{
+    font-weight: bold;
+}
+@media only screen and (max-width: 428px)  {
+    .about{
+        padding : 0 20px;
+    }
+    .label{
+        text-align: justify;
+    }
+}
+@media only screen and (max-width: 780px)  {
+    .about{
+        padding : 0 30px;
+    }
+    .label{
+        text-align: justify;
+    }
+}
