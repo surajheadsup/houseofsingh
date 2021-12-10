@@ -1,5 +1,4 @@
 import React from 'react';
-import Lottie from "react-lottie";
 import animationData from "../public/hos_logo_dec7.json";
 import styles from "../styles/Loading.module.css";
 function Loading() {
