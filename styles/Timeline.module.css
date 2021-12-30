@@ -1,0 +1,18 @@
+.accordion{
+    max-height: 500px;
+    overflow-y: auto;
+    background: linear-gradient(180deg, rgba(113,113,113,0.6) 0%, var(--color-bg-primary) 25%);
+}
+.calender{
+    padding : 0 10px;
+    
+}
+.year{
+    font-size: 16px;
+    margin: 0;
+}
+.months{
+    width: 100%;
+    font-size: 16px;
+    text-transform: capitalize;
+}

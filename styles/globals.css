@@ -11,6 +11,13 @@ body {
   border-bottom: 2px var(--color-text-primary) solid;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
+.month_active{
+  text-decoration: 'line-through';
+}
 /* h1 {
   color: var(--color-text-secondary);
 } */
@@ -34,4 +41,8 @@ body {
 @font-face {
   font-family: 'Avenir_Roman';
   src: url('../public/fonts/AvenirLTStd-Roman.otf');
+}
+
+.hover{
+  cursor: pointer;
 }

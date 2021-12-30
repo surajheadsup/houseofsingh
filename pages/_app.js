@@ -6,7 +6,6 @@ import '../styles/theme.css'
 import Router from "next/router";
 import Loading from "../components/Loading";
 
-
  function App({ Component, pageProps }) {
   const [loading, setLoading] = React.useState(false);
 
