@@ -1,147 +1,230 @@
 import React, { useEffect, useState } from 'react';
-import { useCollection } from "react-firebase-hooks/firestore";
-import { setDoc } from 'firebase/firestore';
+import imageCompression from 'browser-image-compression';
 import DatePicker from "react-datepicker";
 import Image from 'next/image'
 import "react-datepicker/dist/react-datepicker.css";
-import {DefaultFirebase} from "../../../firebase/clientApp";
-import storage from '../../../firebase/clientApp';
 import LoadCss from '../../../components/LoadCss';
-
+import axios from 'axios';
+import * as Session from '../../../storage/storage'
 
 
 const addtimeline = () => {
-    
-    const [value, setValue] = useState({name : '', time : ''})
-    const [time, onChange] = useState(new Date());
-    const [data, setData] = useState(null)
-    const [thumbnail, setThumbnail] = useState('');
-    var db = DefaultFirebase.db;
-    var storage = DefaultFirebase.storage;
-    var imageURL = '';
-    useEffect(() => {
-      loadTimeline()
-    },[])
+  const [time, onChange] = useState(new Date());
+  const [thumbnail, setThumbnail] = useState('');
+  const [options, setOptions] = useState({maxSizeMB : 1, maxWidthOrHeight : 450, useWebWorker : true});
+  const [name, setName] = useState('')
+  const [afterCompress, setAfterCompress] = useState(null)
+  const [beforeCompress, setBeforeCompress] = useState(null)
+  const [image, setImage] = useState(null)
+  const [thumbnailImage, setThumbnailImage] = useState(null)
+  const [value, setValue] = useState({title :'', sub_title : ''})
+  const [process, setProcess] = useState(0)
 
-    
+  useEffect(() => {
 
-    const handleChange = name => event => {
-        setValue({ ...value, [name]: event.target.value });
-    };
+  },[thumbnail, afterCompress, beforeCompress, process])
 
-    const handleDelete = async (id) => {
-        var timelineRef = db.collection("timeline").where('id','==', id);
-        timelineRef.get().then(function(querySnapshot) {
-          querySnapshot.forEach(function(doc) {
-            console.log();
-            doc.ref.delete().then(()=>{alert('Delete successfully')});
-          });
-        });
+  const imageChange = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setThumbnail(e.target.files[0]);
     }
+  };
 
-    const loadTimeline = async () => {
-      const response = await db.collection("timeline").orderBy('created_at').get();
-      const timelineData = response.docs.map(entry => ({
-          id: entry.id,
-          ...entry.data()
-      }));
-
-      setData(timelineData)
+  const handleChange = name =>event =>{
+    setValue({...value, [name]:event.target.value})
   }
 
-    const upload = ()=>{
-      var count = 0;
-      var name = Date.now();
-      const uploadTask = storage.ref(`/images/${name.toString()}`).put(thumbnail)
-        uploadTask.on('state_changed', 
-        (snapShot) => {
-        console.log(snapShot)
-        }, (err) => {
-        console.log(err)
-        }, () => {
-        storage.ref('images').child(name.toString()).getDownloadURL()
-        .then(fireBaseUrl => {
-          if(fireBaseUrl){
-            imageURL=fireBaseUrl;
-            handleSubmit()
+  const ImageCompression = () => {
+    
+    var imageFile = thumbnail;
+    if(imageFile){
+      setProcess(1)
+        setName(imageFile.name)
+        setBeforeCompress(URL.createObjectURL(imageFile));
+
+        var thumbnailOption = {
+          maxSizeMB: 0.4,
+          maxWidthOrHeight: 400,
+          useWebWorker: true
+        }
+        var imageOption = {
+          maxSizeMB: 1,
+          maxWidthOrHeight: 600,
+          useWebWorker: true
+        }
+
+        imageCompression(imageFile, thumbnailOption)
+          .then(function (thumbnailFile) {
+            var convertThumbnailfile = new File([thumbnailFile], imageFile.name,{type: imageFile.type});
+
+            console.log('convertThumbnailfile', convertThumbnailfile);
+            
+            setAfterCompress(URL.createObjectURL(thumbnailFile))
+            setThumbnailImage(convertThumbnailfile)
+
+            imageCompression(imageFile, imageOption).then(function (mainImageFile) {
+              var convertMainfile = new File([mainImageFile], imageFile.name, {type: imageFile.type});
+
+              console.log('convertMainfile', convertMainfile);
+
+              setAfterCompress(URL.createObjectURL(mainImageFile))
+              setImage(convertMainfile)  
+              setProcess(0)
+
+            }).catch(function (error) {
+              console.log(error);
+            })
+
+          })
+          .catch(function (error) {
+            console.log(error.message);
+          });
+
+
+
+        
+    }else{
+      alert('Select Image First')
+    }
+  }
+
+  const handleSubmit = () => {
+    var filter_date = Session.getMonthYear(time.getTime());
+    var json = {
+      _id : 'HOST'+new Date().getTime(),
+      heading : value.title,
+      sub_heading : value.sub_title,
+      timeline_date : time.getTime(),
+      image : image,
+      thumbnail_image : thumbnailImage,
+      filter_date : filter_date,
+      
+      status  : 1
+    }
+    console.log(json);
+    var isValid = validate(json);
+    if(isValid===true){
+
+      var data = new FormData();
+      data.append('_id', 'HOST'+new Date().getTime())
+      data.append('heading', json.heading)
+      data.append('sub_heading', json.sub_heading)
+      data.append('timeline_date', json.timeline_date)
+      data.append('filter_date', json.filter_date)
+      data.append('image', json.image)
+      data.append('thumbnail_image', json.thumbnail_image)
+      data.append('status', json.status)
+
+      axios.post('http://localhost:8000/api/upload_images', data, {
+        headers: {'content-type': 'multipart/form-data'}
+      })
+        .then((response) => {
+          console.log(response.data);
+          if (response.status === 200) {
+            alert('Timeline Saved Successfully');
           }
         })
-      })
+        .catch((error) => {
+            console.error(error);
+        });
+
+    }else{
+      alert(isValid)
+    }
+  }
+  const validate = (json) => {
+    if(json.heading===''){
+      return 'Title Cannot be null'
+    }else if(json.sub_heading===''){
+      return 'Sub Title Cannot be null'
+    }else if(json.timeline_date===''){
+      return 'Date Cannot be null'
+    }else if(json.image===null){
+      return 'Image Compression did not, kindly refresh the page and add again'
+    }else if(json.thumbnail_image===null){
+      return 'Image Compression did not, kindly refresh the page and add again'
+    }else{
+      return true;
     }
 
-    const imageChange = (e) => {
-      if (e.target.files && e.target.files.length > 0) {
-        setThumbnail(e.target.files[0]);
-      }
-    };
-
-    const handleSubmit = () => {
-      var json = {
-        id : 'hos'+new Date().getTime(),
-        name : value.name,
-        time : time.getTime(),
-        image : imageURL,
-        status : 'active',
-        created_at : new Date().getTime()
-      }
-
-      var result = db.collection('timeline').add(json).then(() => {
-        alert('Data has been saved');
-      });
-      
-    }
-    let timeline;
-    if(data!==null){
-        timeline = data.map((item, index)=>
-            <tr key={index}>
-              <td scope="col">{item.id}</td>
-              <td scope="col">{item.name}</td>
-              <td scope="col">{item.subtitle}</td>
-              <td scope="col"><Image src={item.image} layout={'fixed'} width={100} height={100}/></td>
-              <td scope="col">
-                <label className="hover" onClick={() => handleDelete(item.id)}>Delete</label>
-              </td>
-            </tr>
-        )
-    }
-
+  }
+    
 
     return ( <>
         <LoadCss/>
         <div className="container-fluid">
           <h1>Add Timeline</h1>
-          <div>
-              <div className={`form-group `}>
-                <label htmlFor="name" className={`w-100`}>Title<span className="danger">*</span></label>
-                <input type="text" id="name" onChange={handleChange('name')} value={value.name} />
-							</div>
+          <div className="row">
+            <div className="col-3">
+              <div className="form-group">
+                <label htmlFor="title">Title</label>
+                <input type="text" name="heading" className="form-control" id="title" aria-describedby="emailHelp" placeholder="Enter Title" onChange={handleChange('title')}/>
+                <small id="emailHelp" className="form-text text-muted">Title for the Timeline Image</small>
+              </div>
+            </div>
+            <div className="col-3">
+              <div className="form-group">
+                <label htmlFor="title">Sub Title</label>
+                <input type="text" name="sub_heading" className="form-control" id="title" aria-describedby="emailHelp" placeholder="Enter Sub Title"  onChange={handleChange('sub_title')}/>
+                <small id="emailHelp" className="form-text text-muted">Sub Title for the Timeline Image</small>
+              </div>
+            </div>
+            <div className="col-3">
+              <div className="form-group">
+                <label htmlFor="title">Select Timeline Date</label>
+                <DatePicker name="timeline_date" selected={time } onChange=
+                {(date) => onChange(date)} className="form-control" dateFormat="MMM-yyyy" showMonthYearPicker/>
+                <small id="emailHelp" className="form-text text-muted">Select Date from calender</small>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-12">
               <div className={`form-group `}>
                 <label htmlFor="password" className={`w-100`}>Image<span className="danger">*</span></label>
-                <input type="file" onChange={imageChange} accept="image/*"/>
-                <div className="mt-2"> {thumbnail ? <img id="thumbnail" className="" src={URL.createObjectURL(thumbnail)} style={{width : 100, height : 100}}/> : ''}  </div>
+                <input type="file" name="image" onChange={imageChange} accept="image/*"/>
+                <div className="mt-2"> {thumbnail ? <img id="thumbnail" className="" src={URL.createObjectURL(thumbnail)} style={{width : 150, height : 150}}/> : ''}  </div>
 							</div>
-              <div className={`form-group `}>
-                <label htmlFor="password" className={`w-100`}>Select Date<span className="danger">*</span></label>
-                <DatePicker selected={time} onChange=
-                {(date) => onChange(date)}  dateFormat="MMM-yyyy" showMonthYearPicker/>
-							</div>
-              <button onClick={upload}>Add Todo</button>
+            </div>
           </div>
-          <hr/>
-          <table className="table" style={{width: '100%'}}>
-            <thead className="thead-dark">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Title</th>
-                <th scope="col">Subtitle</th>
-                <th scope="col">Image</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-                {timeline}
-            </tbody>
-          </table>
+          <div className="row">
+            <div className="col-12">
+              
+              {
+                process === 1 ? 
+                  <button className="btn btn-light" type="button" disabled>
+                    <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    &nbsp; Image Compression Started, Kindly wait...
+                  </button>
+                  
+                :
+                  <div className={`form-group `}>
+                    <button type="button" className="btn btn-warning" onClick={() => ImageCompression()}>Compress Image</button>
+                  </div>
+
+              }
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-6">
+                <label className="w-100">Before Compress</label>
+                <img src={beforeCompress} className="w-50"/>
+            </div>
+            <div className="col-6">
+                <label className="w-100">After Compress</label>
+                <img src={afterCompress} className="w-50"/>
+            </div>
+          </div>
+
+
+          <div className="row">
+            <div className="col-12">
+              <div className={`form-group mt-5`}>
+                <button type="button" className="btn btn-success" onClick={() => handleSubmit()}>Save Timeline</button>
+							</div>
+            </div>
+          </div>
         </div>
         
     </> );

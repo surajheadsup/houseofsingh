@@ -13,33 +13,47 @@ const Timeline = () => {
         if(data === null){
             loadTimeline();
         }
-    },[])
+    },[data])
 
-    const loadTimeline = async () => {
-        const response = await db.collection("timeline").orderBy('created_at').get();
-        const timelineData = response.docs.map(entry => ({
-            id: entry.id,
-            ...entry.data()
-        }));
-
-        setData(timelineData)
-    }
-
-    
+    const loadTimeline = () => {
+        axios
+        .get(Constants.getTimelines)
+        .then((response) => {
+            if (response.status === 200) {
+                setData(response.data.data)
+                console.log(response.data.data);
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    }    
 
     let timeline;
     if(data!==null){
-        timeline = data.map((item, index)=>
-            <h1 key={index}>{item.name}</h1>
+        timeline = data.data.map((item, index)=>
+            <div className="col-4" key={index}>
+                <div className={Style.main}>
+                    <div className={Style.child}>
+                        <img src={`http://localhost:8000/uploads/timelines/${item.thumbnail_image}`} className="w-100"/>
+                    </div>
+                    <div className={Style.hoverEffect}>
+                        <label className="w-100">{item.heading}</label>
+                    </div>
+                </div>
+            </div>
         )
     }
 
     return ( <>
         <Navbar />
-        <div>
+        <div className="m-1">
             <div className="row">
                 <div className="col-1">
-                    <Calender year={Constants.year}/>
+                    <Calender year={Constants.year} setData={setData} data={data}/>
+                </div>
+                <div className="col-11">
+                    <div className="row">{timeline}</div>
                 </div>
             </div>
         </div>

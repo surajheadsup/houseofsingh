@@ -16,3 +16,32 @@
     font-size: 16px;
     text-transform: capitalize;
 }
+.main{
+    position: relative;
+    
+}
+.child{
+  
+}
+.main:hover .child{
+    opacity: 0.7;
+    transition: all .5s;
+}
+.main:hover .hoverEffect{
+    opacity: 1;
+    transition: all .5s;
+}
+.hoverEffect{
+    background-color: rgba(0,0,0,0.7);
+    bottom: 0;
+    left: 0;
+    padding: 12px 0;
+    position: absolute;
+    right: 0;
+    opacity : 0;
+    text-align: center;
+}
+.hoverEffect label{
+margin : 0;
+text-transform: capitalize;
+}

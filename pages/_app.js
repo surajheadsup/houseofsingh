@@ -5,6 +5,9 @@ import '../styles/globals.css'
 import '../styles/theme.css'
 import Router from "next/router";
 import Loading from "../components/Loading";
+import axios from 'axios';
+
+axios.defaults.baseURL = "http://localhost:8000/";
 
  function App({ Component, pageProps }) {
   const [loading, setLoading] = React.useState(false);
