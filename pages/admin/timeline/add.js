@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from "react";
 import imageCompression from 'browser-image-compression';
 import DatePicker from "react-datepicker";
 import Image from 'next/image'
@@ -8,7 +8,7 @@ import axios from 'axios';
 import * as Session from '../../../storage/storage'
 
 
-const addtimeline = () => {
+const Addtimeline = () => {
   const [time, onChange] = useState(new Date());
   const [thumbnail, setThumbnail] = useState('');
   const [options, setOptions] = useState({maxSizeMB : 1, maxWidthOrHeight : 450, useWebWorker : true});
@@ -230,4 +230,4 @@ const addtimeline = () => {
     </> );
 }
  
-export default addtimeline;
+export default Addtimeline;

@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import * as Session from '../../../storage/storage'
 
-function get() {
+function Get() {
 
     const [data, setData]= useState(null)
 
@@ -49,4 +49,4 @@ function get() {
     )
 }
 
-export default get
+export default Get
