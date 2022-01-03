@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import * as Session from '../../../storage/storage'
+import * as Constants from '../../../constants/constants'
 
 function Get() {
 
@@ -14,7 +15,7 @@ function Get() {
 
     const loadTimeline = () => {
         axios
-        .get("http://localhost:8000/api/timelines")
+        .get(Constants.getTimelines)
         .then((response) => {
             if (response.status === 200) {
                 setData(response.data.data)

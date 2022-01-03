@@ -35,7 +35,7 @@ const Timeline = () => {
             <div className="col-4" key={index}>
                 <div className={Style.main}>
                     <div className={Style.child}>
-                        <img src={`http://localhost:8000/uploads/timelines/${item.thumbnail_image}`} className="w-100"/>
+                        <img src={`${Constants.UploadUrl}${item.thumbnail_image}`} className="w-100"/>
                     </div>
                     <div className={Style.hoverEffect}>
                         <label className="w-100">{item.heading}</label>

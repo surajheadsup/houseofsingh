@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import LoadCss from '../../../components/LoadCss';
 import axios from 'axios';
 import * as Session from '../../../storage/storage'
+import * as Constants from '../../../constants/constants'
 
 
 const Addtimeline = () => {
@@ -115,7 +116,7 @@ const Addtimeline = () => {
       data.append('thumbnail_image', json.thumbnail_image)
       data.append('status', json.status)
 
-      axios.post('http://localhost:8000/api/upload_images', data, {
+      axios.post(Constants.addTimelines, data, {
         headers: {'content-type': 'multipart/form-data'}
       })
         .then((response) => {
