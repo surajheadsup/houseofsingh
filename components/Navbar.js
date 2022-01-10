@@ -19,7 +19,7 @@ const Navbar = ({children}) => {
     <LoadCss/>
         <div className={styles.topnav}>
             <div className={styles.inline}><GoPrimitiveDot/><IoIosMenu/></div>
-            <div><Link href='/'><a><Image src={Logo} layout={'fixed'} width={300} height={183}/></a></Link></div>
+            {/* <div><Link href='/'><a><Image src={Logo} layout={'fixed'} width={300} height={183}/></a></Link></div> */}
             <div className={styles.switch}>
                 <div className={`mr-4`}> En | Fr | ਪ </div>
                 <div><ThemeToggle type="button" onClick={() => setActiveTheme(inactiveTheme)}/></div>

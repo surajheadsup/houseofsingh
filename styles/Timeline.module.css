@@ -45,3 +45,16 @@
 margin : 0;
 text-transform: capitalize;
 }
+
+.customCol{
+    padding: 2px;
+}
+.active_year{
+    color : #000;
+    font-weight: 600;
+}
+.active_month{
+    color : #000;
+    font-weight: 600;
+    text-decoration: line-through;
+}

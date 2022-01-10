@@ -46,3 +46,11 @@ body {
 .hover{
   cursor: pointer;
 }
+.active-filter-year{
+  color : #000;
+  font-weight: 600;
+}
+.active-filter-month{
+  text-decoration: line-through;
+  font-weight: 600;
+}

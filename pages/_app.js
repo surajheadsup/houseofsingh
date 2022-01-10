@@ -6,6 +6,8 @@ import '../styles/theme.css'
 import Router from "next/router";
 import Loading from "../components/Loading";
 import axios from 'axios';
+import $ from 'jquery';
+
 
 axios.defaults.baseURL = "http://localhost:8000/";
 
@@ -34,6 +36,7 @@ axios.defaults.baseURL = "http://localhost:8000/";
 
   return (
     <>
+
        {loading ? (
         <Loading/>
       ) : 

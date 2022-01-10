@@ -1,0 +1,44 @@
+.accordion{
+   
+    
+}
+.year{
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    overflow-x: scroll;
+    max-width: 100%;
+    background: white;
+    height: 100px;
+    padding-top: 14px;
+    color: #000;
+    font-weight: 600;
+}
+.month{
+    display: flex;
+    overflow-x: scroll;
+    max-width: 100%;
+    position: absolute;
+    bottom: 20px;
+    color: #000;
+    text-transform: capitalize;
+}
+.month .months{
+    padding-right : 20px;
+}
+.years{
+    padding : 0 20px;
+}
+.label{
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+.circle{
+    width: 8px;
+    height: 8px;
+    background: #000;
+    border-radius: 50%;
+    position: absolute;
+    top: -8px;
+}
