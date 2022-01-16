@@ -1,0 +1,39 @@
+.main{
+    padding : 10px;
+}
+.parent{
+   
+}
+.child{
+   
+}
+.card{
+    cursor: pointer;
+}
+.thumbnailImage{
+    width : 100%;
+    min-height: 400px;
+    max-height: 500px;
+}
+.faceButton {
+    height: 35px;
+    display: inline-block;
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    text-decoration: none;
+    overflow: hidden;
+  }
+  .faceButton .facePrimary,
+  .faceButton .faceSecondary {
+    display: block;
+    /* padding: 0 28px; */
+    line-height: 35px;
+    transition: margin 0.4s;
+  }
+  .faceButton .facePrimary {
+    /* color: #fff; */
+  }
+  .card:hover .facePrimary {
+    margin-top: -45px;
+  }

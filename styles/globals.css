@@ -54,3 +54,15 @@ body {
   text-decoration: line-through;
   font-weight: 600;
 }
+
+/* Work Filter */
+.breadcrumb{
+  background : transparent;
+}
+.breadcrumb .breadcrumb-item a{
+  color : var(--theme-primary-color)
+}
+.portfolio-filter-active{
+  font-weight: 600;
+  color : red;
+}

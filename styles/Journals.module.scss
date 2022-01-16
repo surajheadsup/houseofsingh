@@ -1,0 +1,79 @@
+@import "mixins";
+$color-primary: red;
+
+.thumbnailImage{
+    width : 100%;
+}
+.journals{
+    position: relative;
+}
+.journals ul{
+    list-style: none;
+}
+.journals ul li{
+    width : 25%;
+    display: inline-block;
+    padding : 5px;
+    cursor: pointer;
+}
+.journals ul li a img{
+    width : 100%;
+}
+.journals .singleJournal{
+    position: relative;
+	overflow: hidden;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+    background-color:#000;
+}
+
+.journals .singleJournal img {
+	vertical-align: top;
+	max-width: 100%;
+	-moz-transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.journals .singleJournal:hover img {
+	-moz-transform: scale(1.03);
+	-webkit-transform: scale(1.03);
+	transform: scale(1.03);
+    opacity : 0.5;
+}
+.journals .displayDate{
+    position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #000;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: .5s ease;
+  opacity : 0.8;
+}
+.journals .singleJournal:hover .displayDate {
+    height: 20%;
+}
+.journals .displayDate label{
+    color: white;
+    font-size: 12px;
+    letter-spacing: 1px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    opacity: 1;
+}
+
+@include desktop() {
+    .journals ul li{
+        width : 100%;
+        margin-left:-5%;
+    }
+}
