@@ -1,6 +1,6 @@
 export const BaseUrl = 'https://db.houseofsingh.com/api/'
-export const GraphQLUrl = 'http://15.223.68.75/'
-export const WordPressRestApiBaseURL = 'http://15.223.68.75/wp-json/wp/v2/posts/'
+export const GraphQLUrl = 'https://server.houseofsingh.com'
+export const WordPressRestApiBaseURL = 'https://server.houseofsingh.com/wp-json/wp/v2/posts/'
 // export const BaseUrl = 'http://localhost:8000/api/'
 export const UploadUrl = 'https://db.houseofsingh.com//uploads/timelines/'
 export const year = 2000;
