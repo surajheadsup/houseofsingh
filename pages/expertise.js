@@ -1,7 +1,7 @@
 import React from 'react';
 import Label from '../components/Label';
 import styles from '../styles/Expertise.module.css'
-import Navbar2 from "../components/Navbar2";
+import Navbar2 from "../components/SecondNavbar";
 const Expertise = () => {
     return ( <>
         <Navbar2/>

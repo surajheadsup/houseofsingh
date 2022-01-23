@@ -7,7 +7,7 @@ import {
   InMemoryCache,
   gql,
 } from "@apollo/client";
-import Navbar2 from "../components/Navbar2";
+import Navbar2 from "../components/SecondNavbar";
 import Link from "next/link";
 import Image from 'next/image';
 import Filter from "../components/WebView/Filter";

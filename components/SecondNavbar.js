@@ -11,7 +11,7 @@ import Logo from "../public/images/logo.png"
 
 const ThemeToggle = dynamic(() => import("./ThemeToggle"), {ssr: false,});
 
-const Navbar2 = ({children}) => {
+const SecondNavbar = ({children}) => {
     const router = useRouter();
   return (
         <>
@@ -43,4 +43,4 @@ const Navbar2 = ({children}) => {
   )
 }
 
-export default Navbar2;
+export default SecondNavbar;
