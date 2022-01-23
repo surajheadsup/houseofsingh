@@ -1,5 +1,5 @@
 import React from 'react';
-import Script from 'next/Script';
+import Script from 'next/script';
 const LoadJs  = () => {
     return ( <>
         <Script src="../Scripts/jquery.min.js" strategy="beforeInteractive"></Script>
