@@ -13,6 +13,10 @@ const ThemeToggle = dynamic(() => import("./ThemeToggle"), {ssr: false,});
 
 const SecondNavbar = ({children}) => {
     const router = useRouter();
+
+    const navigate = () => {
+        window.location.href="/"
+    }
   return (
         <>
         <LoadCss/>
@@ -23,7 +27,7 @@ const SecondNavbar = ({children}) => {
                                 <GoPrimitiveDot />
                             </div>
                         </div>
-                        <div><Link><a href='/'><Image src={Logo} layout={'fixed'} width={300} height={183}/></a></Link></div>
+                        <div><Image src={Logo} layout={'fixed'} width={300} height={183} onClick={()=>navigate()}/></div>
                         <div className={styles.switch}>
                             <div className={`mr-4`}> En | Fr | ਪ </div>
                             <div><ThemeToggle type="button" onClick={() => setActiveTheme(inactiveTheme)}/></div>
