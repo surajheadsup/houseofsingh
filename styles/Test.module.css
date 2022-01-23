@@ -1,0 +1,19 @@
+
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+@keyframes slide_up {
+    0%{
+        transform: translateY(100vh)
+    }
+    100%{
+        top : 0;
+        transform: translateY(0)
+    }
+}

@@ -1,9 +1,11 @@
 import React, { useEffect } from "react"
-import { ChakraProvider } from '@chakra-ui/react'
-import Layout from '../components/Layout';
+import '../styles/theme.css'
+import '../styles/animation.css'
 import '../styles/globals.css'
 import '../styles/media.css'
-import '../styles/theme.css'
+
+// import '../styles/sideNav.css'
+
 import Router from "next/router";
 import Loading from "../components/Loading";
 import axios from 'axios';

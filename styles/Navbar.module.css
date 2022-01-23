@@ -23,3 +23,15 @@
     text-decoration: none;
     font-size: var(--font);
 }
+.menu{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.span{
+    opacity : 0;
+}
+.menu:hover .span{
+    opacity: 1;
+    transition: all 1s ease;
+}

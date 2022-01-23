@@ -7,7 +7,7 @@ import {
   InMemoryCache,
   gql,
 } from "@apollo/client";
-import Navbar from "../components/Navbar";
+import Navbar2 from "../components/Navbar2";
 import Link from "next/link";
 import Image from 'next/image';
 import Filter from "../components/WebView/Filter";
@@ -66,7 +66,7 @@ const Work = ({ posts }) => {
 
   return (
     <>
-        <Navbar/>
+        <Navbar2/>
         <div>
             <Filter portfolioData={portfolioData} setPortfolioData={setPortfolioData} data={data} setRender={setRender}/>
         </div>
