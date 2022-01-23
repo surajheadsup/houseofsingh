@@ -23,7 +23,7 @@ const NavBar2 = ({children}) => {
                                 <GoPrimitiveDot />
                             </div>
                         </div>
-                        <div><a href='/'><Image src={Logo} layout={'fixed'} width={300} height={183}/></a></div>
+                        <div><Link href='/work'><a><Image src={Logo} layout={'fixed'} width={300} height={183}/></a></Link></div>
                         <div className={styles.switch}>
                             <div className={`mr-4`}> En | Fr | ਪ </div>
                             <div><ThemeToggle type="button" onClick={() => setActiveTheme(inactiveTheme)}/></div>
