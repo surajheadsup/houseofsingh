@@ -9,9 +9,9 @@ import LoadCss from "./LoadCss";
 import LoadJs from "./LoadJs";
 import Logo from "../public/images/logo.png"
 
-const ThemeToggle = dynamic(() => import("../components/ThemeToggle"), {ssr: false,});
+const ThemeToggle = dynamic(() => import("./ThemeToggle"), {ssr: false,});
 
-const NavBar2 = ({children}) => {
+const Navbar2 = ({children}) => {
     const router = useRouter();
   return (
         <>
@@ -43,4 +43,4 @@ const NavBar2 = ({children}) => {
   )
 }
 
-export default NavBar2;
+export default Navbar2;
