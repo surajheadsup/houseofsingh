@@ -1,10 +1,11 @@
 import React, { useEffect } from "react"
 import '../styles/theme.css'
-import '../styles/animation.css'
-import '../styles/globals.css'
+// import '../styles/animation.css'
+
 import '../styles/media.css'
 
-// import '../styles/sideNav.css'
+import '../styles/sideNav.css'
+import '../styles/globals.css'
 
 import Router from "next/router";
 import Loading from "../components/Loading";

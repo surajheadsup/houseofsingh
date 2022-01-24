@@ -37,3 +37,15 @@
   .card:hover .facePrimary {
     margin-top: -45px;
   }
+
+  .moreProjects{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+  }
+
+  .moreProjects label{
+    border : 1px var(--color-text-primary) solid;
+    padding : 10px 20px;
+    cursor : pointer;
+  }

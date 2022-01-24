@@ -1,0 +1,9 @@
+.parent{
+    /* position: relative; */
+}
+.navImage{
+    height : 30%;
+    object-fit: cover;
+    top : 0;
+    z-index: 100;
+}

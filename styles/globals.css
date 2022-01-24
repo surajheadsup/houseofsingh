@@ -5,6 +5,7 @@ body {
   color: var(--color-text-primary);
   font-family: 'Avenir_Book';
   transition: background 0.25s ease-in-out;
+  overflow-x: hidden;
 }
 .active{
   font-weight: 600;

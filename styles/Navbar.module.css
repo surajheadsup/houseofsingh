@@ -22,6 +22,7 @@
     color : var(--color-text-primary);
     text-decoration: none;
     font-size: var(--font);
+    font-weight: 700;
 }
 .menu{
     display: flex;
@@ -31,7 +32,11 @@
 .span{
     opacity : 0;
 }
+.menu:hover .dot{
+    color : red;
+}
 .menu:hover .span{
     opacity: 1;
     transition: all 1s ease;
 }
+

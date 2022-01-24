@@ -1,36 +1,118 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import Breadcrumb from '../components/Breadcrumb'
 import Navbar from '../components/Navbar'
+import * as Style from '../styles/Home.module.css'
+import Image from 'next/image';
+import heroBanner from '../public/images/heroBanner.jpg'
+import * as Session from '../storage/storage'
+import * as Constants from '../constants/constants'
+import {
+  ApolloClient,
+  InMemoryCache,
+  gql,
+} from "@apollo/client";
+import PortfolioItem from '../components/PortfolioItem';
 
 
-export default function Home() {
+function Home({posts}) {
+
+  const [selected, setSelected] = useState('All')
+  const [display, setDisplay] = useState(0)
+  
+  useEffect(() => {
+    
+  }, [display, selected])
+
+    const filter= (category) => {
+        setSelected(category)
+    }
+
   return (
     <>
       <Navbar />
-      <div className="intro-home">
-          <div className="row row-full nopad">
-              <div className="small-12 columns nopad intro-home-hold">
-                  <div className="small-12 columns nopad intro-home-animation">
-                      <div className="small-12 columns nopad intro-home-carousel-hold">
-                          <div className="owl-carousel intro-home-carousel">
-                              <div className="intro-home-carousel-item" style={{background: "url('wp-content/uploads/2021/05/2A4A9553-web-1920x1536.jpg') no-repeat center center;"}}>
-                                  <div className="intro-home-carousel-item-title">
-                                      <span> Sado Estuary, Portugal </span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <a href="#about" className="scroll-down-mouse"></a>
-                  </div>
-                  <div className="small-12 columns nopad home-intro-content-bg" id="about">
-                      <div className="small-12 large-12 columns nopad text-center intro-home-content">
-                          <div className="intro-home-content-width">
-                              <h1> An intention, a wish, a recourse, Slow is a collective of people, places and projects that reframe the way we live and interact. </h1>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+      <div className={Style.main}>
+        <div className={Style.heroBanner}>
+          <Image src={heroBanner} layout={'responsive'} height={800}/>
+        </div>
+        <div className={Style.filter} id="home-filter">
+          <div>
+            {
+              display === 0 ?
+                <Breadcrumb className={Style.breadCrumb} display={display} setDisplay={setDisplay} setSelected={setSelected}/>
+              :<>
+                {/* <nav aria-label="breadcrumb" className={Style.filter1}>
+                  <ol className="breadcrumb">
+                      <li className={`breadcrumb-item hover ${selected==='All'? 'portfolio-filter-active': ''}`} onClick={() =>filter('All')}>All</li>
+                      <li className={`breadcrumb-item hover ${selected==='Art'? 'portfolio-filter-active': ''}`} onClick={() =>filter('Art')}>Art</li>
+                      <li className={`breadcrumb-item hover ${selected==='Design'? 'portfolio-filter-active': ''}`} onClick={() =>filter('Design')}>Design</li>
+                      <li className={`breadcrumb-item hover ${selected==='Photograpy'? 'portfolio-filter-active': ''}`} onClick={() =>filter('Photograpy')}>Photography</li>
+                  </ol>
+                </nav>
+                 */}
+                </>
+            }
+            
+            
           </div>
+        </div>
+      </div>
+      <div >
+        <PortfolioItem data={posts} selected={selected} setSelected={setSelected} />
       </div>
     </>
   )
 }
+
+
+export async function getStaticProps() {
+  const client = new ApolloClient({
+    uri: Constants.getPortfolio,
+    cache: new InMemoryCache(),
+  });
+  const response = await client.query({
+    query: gql`
+      query GetPosts {
+        posts(where: {categoryNotIn: 6}) {
+          nodes {
+            __typename
+            id
+            title
+            categories {
+              edges {
+                node {
+                  id
+                  name
+                }
+              }
+            }
+            content
+            date
+            slug
+            uri
+            gif {
+                gifUrl
+            }
+            status
+            featuredImageId
+            featuredImageDatabaseId
+            featuredImage {
+              node {
+                sourceUrl
+              }
+            }
+            postId
+          }
+        }
+      }
+    `,
+  });
+  const posts = response.data.posts.nodes;
+  return {
+    props: {
+      posts: posts,
+    },
+    revalidate: 10
+  };
+}
+
+export default Home;

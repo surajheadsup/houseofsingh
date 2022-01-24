@@ -20,7 +20,7 @@ const SecondNavbar = ({children}) => {
   return (
         <>
         <LoadCss/>
-                <div>
+                {/* <div>
                     <div className={styles.topnav}>
                         <div className={`${styles.inline} ${styles.inline}`}>
                             <div className={styles.menu}>
@@ -40,7 +40,8 @@ const SecondNavbar = ({children}) => {
                         <Link href='/contact'><a className={router.pathname === "/contact" ? "active" : ""}>Contact</a></Link>
                     </div>
                     <div className="main">{children}</div>
-                </div>
+                </div> */}
+                
             <LoadJs/>
         </>
     

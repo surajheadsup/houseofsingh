@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
 
 function Filter(props) {
-    const [selected, setSelected] = useState('All')
+    const [selected, setSelected] = useState()
     useEffect(() => {
-        // console.log('data', props.data);
-    },[])
+        console.log('selected', props.selected);
+
+        if(props.selected){
+            setSelected(props.selected)
+        }else{
+            setSelected('All')
+        }
+    },[selected])
 
 
     const filter= (category) => {

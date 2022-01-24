@@ -6,7 +6,7 @@ body[data-theme="light"] {
   --color-text-primary: #6f6f6f;
   --color-text-secondary: #0a0a0a;
   --color-bg-primary: #fff;
-  --color-bg-toggle: #1e90ff;
+  --color-bg-toggle: #6f6f6f;
 }
 
 body[data-theme="dark"] {

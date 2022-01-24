@@ -1,4 +1,5 @@
 export const ACTIVE_THEME = 'ACTIVE_THEME';
+export const SELECTED = 'SELECTED';
 export const setThemeMode = (value) => {
     localStorage.setItem(ACTIVE_THEME, value)
 }
@@ -33,4 +34,14 @@ export const getMonthYear = (UNIX_timestamp) => {
         var sec = a.getSeconds();
         var time =  month + '-' + year;
         return time;
+}
+
+
+export const setSelected = (value) => {
+
+    console.log('value', value);
+    localStorage.setItem('filter', value)
+}
+export const getSelected = () =>{
+    return localStorage.getItem('filter');
 }
