@@ -30,9 +30,7 @@ function Test() {
 
     return (
         <>
-        <div class="outer">
-            <div class="inner">This is a content block.</div>
-        </div>
+        
         </>
     )
 }
