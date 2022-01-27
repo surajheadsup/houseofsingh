@@ -43,20 +43,20 @@ function SplitNav(props) {
                             <li id="refContent2" className={`refContent2 hasChild`} onMouseOver={()=>handleHover(2)} data-nav-link="2">
                                 places
                                 <ul className={'childUl'}>
-                                    <li>Location</li>
-                                    <li>Location</li>
-                                    <li>Location</li>
-                                    <li>Location</li>
+                                    <li>Tulam Treehouse</li>
+                                    <li>Tulam Treehouse</li>
+                                    <li>Tulam Treehouse</li>
+                                    <li>Tulam Treehouse</li>
                                 </ul>
                             </li>
 
                             <li  className={'hasChild'} onMouseOver={()=>handleHover(3)} data-nav-link="3">
                                 projects
                                 <ul  className={'childUl'}>
-                                    <li>project</li>
-                                    <li>project</li>
-                                    <li>project</li>
-                                    <li>project</li>
+                                    <li>Soft Bakery</li>
+                                    <li>Soft Bakery</li>
+                                    <li>Soft Bakery</li>
+                                    <li>Soft Bakery</li>
                                 </ul>
                             </li>
                             <li>people</li>

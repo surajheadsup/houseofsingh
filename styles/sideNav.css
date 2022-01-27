@@ -18,7 +18,7 @@
     display:flex;
     justify-content: space-between;
     padding-top : 30px;
-    padding-left: 30px;
+    padding-left: 36px;
 }
 .closeDiv{
     cursor: pointer;
@@ -43,6 +43,26 @@
 .sideNav .ul{
     list-style: none;
 }
+
+.childUl{
+    position: absolute;
+    top: 8px;
+    left: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-10px);
+    margin: 0;
+    transition: .3s;
+	width : 200%;
+	list-style : none;
+}
+.childUl li{
+	white-space: nowrap;
+    font-size: 14px!important;;
+    letter-spacing: .51px!important;;
+    text-transform: initial!important;;
+    font-weight: 400!important;;
+}
 .sideNav .ul li{
     font-weight: 500;
     font-size: 16px;
@@ -53,50 +73,12 @@
     position: relative;
     cursor: pointer;
 }
-.childUl{
-    position: absolute;
-    top: 8px;
-    left: 100%;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateX(-10px);
-    margin: 0;
-    transition: .3s;
-}
-
 
 .sideNav .ul .hasChild:hover > .childUl{
     opacity: 1;
     visibility: visible;
     transform: translateX(0px);
 }
-/* 
-.content1{
-    width : 100%;
-    height: 100vh;
-    overflow: hidden;
-    opacity: 1;
-    background-size: cover !important;
-    background-image: url('../public/hover/1.jpg');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background: red;
-}
-.content2{
-    width : 100%;
-    height: 100vh;
-    overflow: hidden;
-    opacity: 1;
-    background-size: cover !important;
-    background-image: url('../public/hover/1.jpg');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background: red;
-} */
-/* .refContent1:hover > .sideNav .ul .refContent2{
-    color : red;
-} */
-
 .nav-content-1{
 	opacity: 0;
 	background-image: url('../public/hover/1.jpg');
@@ -112,15 +94,6 @@
 
 .show{
 	opacity: 1;
-}
-
-
-.mainDiv .refContent1:hover{
-	color : red;
-}
-
-.mainDiv .refContent1:hover ~ .content1{
-	background : green;
 }
 
 .slideDown{

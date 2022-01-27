@@ -4,7 +4,7 @@ import animationData from "../public/static/animation.json";
 import styles from "../styles/Loading.module.css";
 function Loading() {
     const [animate, setanimate] = useState('')
-    const [timer, setTimer] = useState(1800);
+    const [timer, setTimer] = useState(4000);
     const defaultOptions = {
       loop: false,
       autoplay: true,
@@ -18,12 +18,12 @@ function Loading() {
     useEffect(() => {
       setTimeout(() => {
         if(timer !== 0){
-         setTimer(timer-20)
+         setTimer(timer-1000)
         }else{
           setanimate('fadeout')
         }
         console.log('l', timer);
-       }, 10);
+       }, 1000);
     },[timer, animate])
    
     return (<div className={`${styles.loading} ${animate}`}><Lottie options={defaultOptions} height={400} width={500}/></div>)
