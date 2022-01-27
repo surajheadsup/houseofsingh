@@ -12,19 +12,21 @@
 }
 
 .main{
-
+	position: relative;
 }
 .topNav{
     display:flex;
     justify-content: space-between;
-    padding-top : 10px;
-    padding-left: 14px;
+    padding-top : 30px;
+    padding-left: 30px;
 }
 .closeDiv{
     cursor: pointer;
     display: flex;
     align-items: center;
     align-content: center;
+	position: absolute;
+	z-index: 2;
 }
 .close{
     font-size: 13px;

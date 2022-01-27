@@ -20,15 +20,21 @@ function SplitNav(props) {
 
 
   return <div  style={{display:props.display}} className={'SplitNav slideDown'}>
-      <div className={'main'}>
+      {/* <div className={'main'}>
         <div className={'topNav'}>
             <div className={'closeDiv'} onClick={() => handleSplitScreenClose()}>
                 <IoMdClose />
                 <span className={'close'}>Close</span>
             </div>
         </div>
-      </div>
+      </div> */}
       <div className={'mainDiv'}>
+        <div className={'topNav'}>
+            <div className={'closeDiv hover'} onClick={() => handleSplitScreenClose()}>
+                <IoMdClose />
+                <span className={'close'}>Close</span>
+            </div>
+        </div>
         <div className="row">
             <div className="col-6">
                 <div className={'sideNav'}>
