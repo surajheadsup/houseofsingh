@@ -4,7 +4,7 @@ import animationData from "../public/static/animation.json";
 import styles from "../styles/Loading.module.css";
 function Loading() {
     const [animate, setanimate] = useState('')
-    const [timer, setTimer] = useState(4000);
+    const [timer, setTimer] = useState(5000);
     const defaultOptions = {
       loop: false,
       autoplay: true,
