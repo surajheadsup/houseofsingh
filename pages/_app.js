@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import '../styles/theme.css'
 // import '../styles/animation.css'
 
@@ -16,8 +16,17 @@ axios.defaults.baseURL = "http://localhost:8000/";
 
  function App({ Component, pageProps }) {
   const [loading, setLoading] = React.useState(false);
+  const [timer, setTimer] = useState(1800);
 
   React.useEffect(() => {
+
+
+    setTimeout(() => {
+     if(timer !== 0){
+      setTimer(timer-10)
+     }
+    }, 10);
+
     const start = () => {
       setLoading(true);
       window.scroll({
@@ -35,17 +44,21 @@ axios.defaults.baseURL = "http://localhost:8000/";
       Router.events.off("routeChangeComplete", end);
       Router.events.off("routeChangeError", end);
     };
-  });
+  },[timer]);
 
   return (
     <>
+    {/* <Loading/> */}
 
        {loading ? (
         <Loading/>
       ) : 
-      (
-        <Component {...pageProps} />
-      )
+      
+        
+          timer === 0 ?
+          <Component {...pageProps} />
+          : <Loading/>
+      
       }
     </>
   );
