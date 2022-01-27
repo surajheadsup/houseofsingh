@@ -16,7 +16,7 @@ axios.defaults.baseURL = "http://localhost:8000/";
 
  function App({ Component, pageProps }) {
   const [loading, setLoading] = React.useState(false);
-  const [timer, setTimer] = useState(1800);
+  const [timer, setTimer] = useState(2400);
 
   React.useEffect(() => {
 
