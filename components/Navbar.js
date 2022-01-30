@@ -24,7 +24,6 @@ const Navbar = ({children}) => {
     useEffect(() => {
 
     }, [display])
-    console.log(router.pathname);
 
     const defaultOptions = {
         loop: true,

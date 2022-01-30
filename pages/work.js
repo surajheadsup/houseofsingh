@@ -8,6 +8,7 @@ import {
   gql,
 } from "@apollo/client";
 import Navbar2 from "../components/SecondNavbar";
+import Footer from "../components/Footer";
 import Link from "next/link";
 import Image from 'next/image';
 import Filter from "../components/WebView/Filter";
@@ -77,6 +78,7 @@ const Work = ({ posts }) => {
                 {postData}
             </div>
         </div>
+        <Footer position={'relative'}/>
     </>
   );
 };

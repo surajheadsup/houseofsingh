@@ -55,9 +55,10 @@ axios.defaults.baseURL = "http://localhost:8000/";
       ) : 
       
         
-          timer === 0 ?
+          // timer === 0 ?
+          // <Component {...pageProps} />
+          // : <Loading/>
           <Component {...pageProps} />
-          : <Loading/>
       
       }
     </>

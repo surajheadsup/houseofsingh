@@ -1,0 +1,32 @@
+.footer{
+    bottom : 0;
+    width : 100%;
+    z-index: 2;
+}
+.newsletter{
+    display: flex;
+    justify-content: space-between;
+}
+.social{
+    /* justify-content:flex-end; */
+}
+.footer ul{
+    list-style: none;
+    display:flex;
+    
+}
+.footer ul li{
+    margin-right: 20px;
+}
+.social ul{
+    justify-content:flex-end;
+}
+.subscribe{
+    height: 100px;
+}
+.footer ul li a{
+    color : var(--primary-color)
+}
+.footer ul li a:hover{
+    text-decoration:none;
+}

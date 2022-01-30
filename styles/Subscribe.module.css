@@ -1,0 +1,43 @@
+.parent{
+    padding : 20px 50px;
+}
+.main{
+   
+}
+.inputGroup{
+    display : flex;
+    border-bottom: 1px #ccc solid;
+}
+.input{
+    background: transparent;
+    border : none;
+    height: 40px;
+    outline : none;
+    font-size: 27px;;
+    font-weight: 800;
+    color : var(--primary-color);
+    width:100%;
+    
+}
+.form-control:focus {
+    outline : none!important;
+  }
+.input:active,
+.input:focus{
+    background: transparent;
+    outline : none!important;
+    color : var(--primary-color)
+}
+.submit{
+    text-align: right;
+    background : transparent;
+    border : none;
+    font-size: 24px;;
+    font-weight: 800;
+    color : var(--primary-color)
+}
+.submit:hover,
+.submit:active,
+.submit:focus{
+    outline : none!important;
+}

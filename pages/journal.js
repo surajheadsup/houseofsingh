@@ -3,6 +3,7 @@ import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import * as Constants from "../constants/constants";
 import parse from 'html-react-parser';
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import Link from "next/link";
 import * as Style from '../styles/Journals.module.scss'
 
@@ -48,6 +49,7 @@ function Journal({journals}) {
             {journal}
         </ul>
     </div>
+    <Footer/>
   </>
 }
 

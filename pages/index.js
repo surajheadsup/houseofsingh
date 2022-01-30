@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Breadcrumb from '../components/Breadcrumb'
 import Navbar from '../components/Navbar'
+import Footer from "../components/Footer";
 import * as Style from '../styles/Home.module.css'
 import Image from 'next/image';
 import heroBanner from '../public/images/heroBanner.jpg'
@@ -59,6 +60,7 @@ function Home({posts}) {
       <div >
         <PortfolioItem data={posts} selected={selected} setSelected={setSelected} />
       </div>
+      <Footer position={'relative'}/>
     </>
   )
 }

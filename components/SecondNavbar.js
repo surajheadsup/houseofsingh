@@ -7,6 +7,7 @@ import styles from '../styles/SecondNavbar.module.css'
 import { GoPrimitiveDot } from "react-icons/go";
 import LoadCss from "./LoadCss";
 import LoadJs from "./LoadJs";
+import Footer from "./Footer";
 import Logo from "../public/images/logo.png"
 
 const ThemeToggle = dynamic(() => import("./ThemeToggle"), {ssr: false,});
@@ -42,7 +43,8 @@ const SecondNavbar = ({children}) => {
                             </div>
                         </div>
                     </div>
-                </div>                
+                </div> 
+                <div className="main">{children}</div>          
             <LoadJs/>
         </>
     
