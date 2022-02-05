@@ -75,6 +75,16 @@ body {
   animation : fadeOutAnimation ease 3s;
 }
 
+.fadeIn{
+  opacity: 1;
+  transition: 0.4s;
+}
+.fadeOut{
+  opacity: 0.2;
+  transition: 0.4s;
+}
+
+
 @keyframes fadeInAnimation {
   0% {
       opacity: 0;

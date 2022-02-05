@@ -11,7 +11,6 @@ import { IoIosMenu  } from "react-icons/io";
 import { GoPrimitiveDot } from "react-icons/go";
 import LoadCss from "./LoadCss";
 import LoadJs from "./LoadJs";
-import Logo from "../public/images/logo.png"
 import SplitNav from "./SplitNav";
 
 
@@ -20,10 +19,12 @@ const Navbar = ({children}) => {
     const router = useRouter();
     const [display, setDisplay] = useState('none')
     const [show, setShow] = useState(0);
+    const [fadeIn, setFadeIn] = useState()
+    const [nav, setNav] = useState('')
 
     useEffect(() => {
 
-    }, [display])
+    }, [display,nav])
 
     const defaultOptions = {
         loop: true,
@@ -41,6 +42,13 @@ const Navbar = ({children}) => {
         setDisplay('none')
     }
 
+    const handleMouseOver = (t_nav) => {
+        setNav(t_nav)
+    }
+
+    const handleMouseOut = ()=>{
+        setNav('')
+    }
     return ( <>
         <LoadCss/>
             <div>
@@ -55,19 +63,21 @@ const Navbar = ({children}) => {
                         :
                             ''
                         }
-                        
                     </div>
-                    <div><Image src={Logo} layout={'fixed'} width={300} height={183} onClick={()=>navigate()}/></div>
+                    <div>
+                    {/* <Image src={Logo} layout={'responsive'} width={300} height={183} onClick={()=>navigate()}/> */}
+                        <label className=""><img src={'../images/logo.png'} className={styles.logo} onClick={()=>navigate()}/></label>
+                    </div>
                     <div className={styles.switch}>
                         <div className={`mr-4`}> En | Fr | ਪ </div>
                         <div><ThemeToggle type="button" onClick={() => setActiveTheme(inactiveTheme)}/></div>
                     </div>
                 </div>
                 <div className={styles.navigation}>
-                    <Link href='/work'><a className={router.pathname === "/work" ? "active" : ""}>Work</a></Link>
-                    <Link href='/about'><a className={router.pathname === "/about" ? "active" : ""}>About</a></Link>
-                    <Link href='/expertise'><a className={router.pathname === "/expertise" ? "active" : ""}>Expertise</a></Link>
-                    <Link href='/contact'><a className={router.pathname === "/contact" ? "active" : ""}>Contact</a></Link>
+                    <Link href='/work'><a className={`${router.pathname === "/work" ? "active" : ""} ${nav === 'work'? 'fadeIn' : nav === '' ? 'fadeIn': 'fadeOut'}`} onMouseOver={()=>handleMouseOver('work')} onMouseOut={()=>handleMouseOut()}>Work</a></Link>
+                    <Link href='/about'><a className={`${router.pathname === "/about" ? "active" : ""} ${nav === 'about'? 'fadeIn' : nav === '' ? 'fadeIn': 'fadeOut'}`} onMouseOver={()=>handleMouseOver('about')} onMouseOut={()=>handleMouseOut()}>About</a></Link>
+                    <Link href='/expertise'><a className={`${router.pathname === "/expertise" ? "active" : ""} ${nav === 'expertise'? 'fadeIn' : nav === '' ? 'fadeIn': 'fadeOut'}`} onMouseOver={()=>handleMouseOver('expertise')} onMouseOut={()=>handleMouseOut()}>Expertise</a></Link>
+                    <Link href='/contact'><a className={`${router.pathname === "/contact" ? "active" : ""} ${nav === 'contact'? 'fadeIn' : nav === '' ? 'fadeIn': 'fadeOut'}`} onMouseOver={()=>handleMouseOver('contact')} onMouseOut={()=>handleMouseOut()}>Contact</a></Link>
                 </div>
                 <div className="main">{children}</div>
             </div>

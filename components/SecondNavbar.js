@@ -14,10 +14,19 @@ const ThemeToggle = dynamic(() => import("./ThemeToggle"), {ssr: false,});
 
 const SecondNavbar = ({children}) => {
     const router = useRouter();
-
+    const [nav, setNav] = useState('')
     const navigate = () => {
         window.location.href="/"
     }
+
+    const handleMouseOver = (t_nav) => {
+        setNav(t_nav)
+    }
+
+    const handleMouseOut = ()=>{
+        setNav('')
+    }
+
   return (
         <>
         <LoadCss/>
@@ -30,10 +39,10 @@ const SecondNavbar = ({children}) => {
                         </div>
                         <div className="col-lg-8 col-md-7 col-12">
                             <div className={styles.navigation}>
-                                <Link href='/work'><a className={router.pathname === "/work" ? "active" : ""}>Work</a></Link>
-                                <Link href='/about'><a className={router.pathname === "/about" ? "active" : ""}>About</a></Link>
-                                <Link href='/expertise'><a className={router.pathname === "/expertise" ? "active" : ""}>Expertise</a></Link>
-                                <Link href='/contact'><a className={router.pathname === "/contact" ? "active" : ""}>Contact</a></Link>
+                                <Link href='/work'><a className={`${router.pathname === "/work" ? "active" : ""} ${nav === 'work'? 'fadeIn' : nav === '' ? 'fadeIn': 'fadeOut'}`} onMouseOver={()=>handleMouseOver('work')} onMouseOut={()=>handleMouseOut()}>Work</a></Link>
+                    <Link href='/about'><a className={`${router.pathname === "/about" ? "active" : ""} ${nav === 'about'? 'fadeIn' : nav === '' ? 'fadeIn': 'fadeOut'}`} onMouseOver={()=>handleMouseOver('about')} onMouseOut={()=>handleMouseOut()}>About</a></Link>
+                    <Link href='/expertise'><a className={`${router.pathname === "/expertise" ? "active" : ""} ${nav === 'expertise'? 'fadeIn' : nav === '' ? 'fadeIn': 'fadeOut'}`} onMouseOver={()=>handleMouseOver('expertise')} onMouseOut={()=>handleMouseOut()}>Expertise</a></Link>
+                    <Link href='/contact'><a className={`${router.pathname === "/contact" ? "active" : ""} ${nav === 'contact'? 'fadeIn' : nav === '' ? 'fadeIn': 'fadeOut'}`} onMouseOver={()=>handleMouseOver('contact')} onMouseOut={()=>handleMouseOut()}>Contact</a></Link>
                             </div>
                         </div>
                         <div className="col-lg-2 col-md-3 col-12">

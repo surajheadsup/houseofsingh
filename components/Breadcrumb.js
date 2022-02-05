@@ -11,13 +11,12 @@ function Breadcrumb(props) {
 
     }, [selected])
 
-
-    // console.log('selected', selected);
-
     const filter= (category) => {
         setSelected(category)
         props.setSelected(category)
-        props.setDisplay(1)
+        // props.setDisplay(1)
+        props.setShow(true);
+        // window.scrollTo(0, 1000);
         const divElement = document.getElementById('home-filter');
         divElement.scrollIntoView({ behavior: 'smooth' });
     }

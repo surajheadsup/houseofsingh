@@ -1,7 +1,12 @@
+.borderTop{
+    border-top: 1px #ccc solid;
+    padding-bottom: 50px;
+}
 .footer{
     bottom : 0;
     width : 100%;
     z-index: 2;
+    padding: 50px;
 }
 .newsletter{
     display: flex;
@@ -13,13 +18,14 @@
 .footer ul{
     list-style: none;
     display:flex;
-    
+    padding: 0;
 }
 .footer ul li{
     margin-right: 20px;
 }
 .social ul{
     justify-content:flex-end;
+    padding: 0;
 }
 .subscribe{
     height: 100px;
@@ -29,4 +35,9 @@
 }
 .footer ul li a:hover{
     text-decoration:none;
+}
+@media (min-width: 320px) and (max-width: 430px) {
+    .footer ul{
+        flex-direction: column;
+    }
 }

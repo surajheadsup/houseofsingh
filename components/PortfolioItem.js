@@ -53,8 +53,8 @@ function PortfolioItem(props) {
 
   return(
       <>
-        <div>
-            <Filter portfolioData={portfolioData} setPortfolioData={setPortfolioData} data={props.data} setRender={setRender} selected={props.selected}/>
+        <div className={props.className}>
+            <Filter portfolioData={portfolioData} setPortfolioData={setPortfolioData} data={props.data} setRender={setRender}/>
         </div>
         <div className={Style.main}>
             <div className={`row`}>

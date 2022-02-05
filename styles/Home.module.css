@@ -3,7 +3,7 @@
 }
 .breadCrumb{
   position : absolute;
-  bottom: 0;
+  bottom: 100px;
 }
 .heroBanner{
   object-fit: cover;

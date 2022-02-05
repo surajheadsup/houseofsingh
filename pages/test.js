@@ -1,37 +1,21 @@
 import React, {useEffect, useState} from 'react'
-import * as Style from '../styles/Test.module.css'
-import Lottie from "react-lottie";
-import animationData from "../public/static/animation.json";
-import Navbar from '../components/Navbar';
-import LoadJs from '../components/LoadJs';
-import LoadCss from '../components/LoadCss';
-import Image from 'next/image';
-import Link from 'next/link';
-import Logo from "../public/images/logo.png"
+import Script from 'next/script';
 import { useRouter } from 'next/router';
+import Fade from 'react-reveal/Fade';
 function Test() {
     const router = useRouter();
+    const [show, setShow] = useState(false)
     
-    const defaultOptions = {
-        loop: true,
-        autoplay: true,
-        animationData: animationData,
-        rendererSettings: {
-          preserveAspectRatio: "xMidYMid slice",
-        },
-      };
-
 
     useEffect(() => {
+      
 
-
-    },[])
-   
+    },[show])
 
     return (
-        <>
-        
-        </>
+      <>
+       
+      </>
     )
 }
 

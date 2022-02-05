@@ -40,3 +40,18 @@
     transition: all 1s ease;
 }
 
+.logo{
+    width: 100%;
+}
+
+@media (min-width: 320px) and (max-width: 430px) {
+    .logo{
+       width : 200px;
+    }
+}
+@media (min-width: 426px) and (max-width: 800px) {
+    .logo{
+       width : 300px;
+       text-align : center;
+    }
+}

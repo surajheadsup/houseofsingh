@@ -1,25 +1,16 @@
 import React, { useEffect, useState } from "react";
 
 function Filter(props) {
-    const [selected, setSelected] = useState()
+    const [selected, setSelected] = useState('All')
     useEffect(() => {
-        console.log('selected', props.selected);
-
-        if(props.selected){
-            setSelected(props.selected)
-        }else{
-            setSelected('All')
-        }
+        
     },[selected])
 
 
     const filter= (category) => {
         setSelected(category)
         var temparr = [];
-        // props.data.map((item, index) => <>
-        //     {item.categories.edges[0].node.name === category ? console.log(item.categories.edges[0].node.name) : ''}
-        //     </>
-        // )
+       
         if(category === 'All'){
             props.setPortfolioData(props.data)
         }else {

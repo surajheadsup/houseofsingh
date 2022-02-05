@@ -41,3 +41,16 @@
 .submit:focus{
     outline : none!important;
 }
+
+
+@media (min-width: 320px) and (max-width: 430px) {
+    .parent{
+        padding : 20px 0px;
+    }
+    .input{
+        font-size: 17px;
+    }
+    .submit{
+        font-size: 20px;
+    }
+}

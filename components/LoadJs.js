@@ -5,6 +5,7 @@ const LoadJs  = () => {
         <Script src="../Scripts/jquery.min.js" strategy="beforeInteractive"></Script>
         <Script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></Script>
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></Script>
+        
         {/* <Script src=""></Script>
 
         <Script src="../themes/slow/js/vendor/what-input.min.js"></Script>

@@ -7,7 +7,7 @@ function SubscribeForm() {
             <form>
                 <div className={'form-group'}>
                     <div className={Style.inputGroup}>
-                        <input type="text" className={`${Style.input}`} placeholder="Add your email address"/>
+                        <input type="text" className={`${Style.input}`} placeholder="Email address"/>
                         <button type="button" className={Style.submit}>Subscribe</button>
                     </div>
                 </div>

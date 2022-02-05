@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import Breadcrumb from '../components/Breadcrumb'
 import Navbar from '../components/Navbar'
 import Footer from "../components/Footer";
@@ -13,55 +13,59 @@ import {
   gql,
 } from "@apollo/client";
 import PortfolioItem from '../components/PortfolioItem';
-
+import Fade from 'react-reveal/Fade';
 
 function Home({posts}) {
 
   const [selected, setSelected] = useState('All')
   const [display, setDisplay] = useState(0)
-  
+  const [goingUp, setGoingUp] = useState(false);
+  const [show, setShow] = useState(false)
+  const [offset, setOffset] = useState(0);
+  const prevScrollY = useRef(0);
   useEffect(() => {
-    
-  }, [display, selected])
+    const onScroll = () => setOffset(window.pageYOffset);
+
+    // clean up code
+    // window.removeEventListener('scroll', onScroll);
+    // window.addEventListener('scroll', onScroll, { passive: true });
+    // return () => window.removeEventListener('scroll', onScroll);
+
+
+  }, [])
 
     const filter= (category) => {
         setSelected(category)
     }
 
   return (
-    <>
+    <div style={{position : 'relative'}}>
       <Navbar />
-      <div className={Style.main}>
+      <div className={Style.main} >
         <div className={Style.heroBanner}>
           <Image src={heroBanner} layout={'responsive'} height={800}/>
         </div>
-        <div className={Style.filter} id="home-filter">
-          <div>
-            {
-              display === 0 ?
-                <Breadcrumb className={Style.breadCrumb} display={display} setDisplay={setDisplay} setSelected={setSelected}/>
-              :<>
-                {/* <nav aria-label="breadcrumb" className={Style.filter1}>
-                  <ol className="breadcrumb">
-                      <li className={`breadcrumb-item hover ${selected==='All'? 'portfolio-filter-active': ''}`} onClick={() =>filter('All')}>All</li>
-                      <li className={`breadcrumb-item hover ${selected==='Art'? 'portfolio-filter-active': ''}`} onClick={() =>filter('Art')}>Art</li>
-                      <li className={`breadcrumb-item hover ${selected==='Design'? 'portfolio-filter-active': ''}`} onClick={() =>filter('Design')}>Design</li>
-                      <li className={`breadcrumb-item hover ${selected==='Photograpy'? 'portfolio-filter-active': ''}`} onClick={() =>filter('Photograpy')}>Photography</li>
-                  </ol>
-                </nav>
-                 */}
-                </>
-            }
-            
-            
-          </div>
-        </div>
+        
       </div>
-      <div >
-        <PortfolioItem data={posts} selected={selected} setSelected={setSelected} />
+      {/* <div>
+        {
+          offset > 240 ?
+          <Fade bottom when={show}>
+            
+          </Fade>
+          
+             : 
+          <div className={Style.filter} id="home-filter">
+            <Breadcrumb className={Style.breadCrumb} display={display} setDisplay={setDisplay} setSelected={setSelected} setShow={setShow}/>
+          </div>
+        }
+        
+      </div> */}
+      <div>
+        <PortfolioItem style={{zIndex: 99}} data={posts} show={show} className={`mt-4`}/>
       </div>
       <Footer position={'relative'}/>
-    </>
+    </div>
   )
 }
 
